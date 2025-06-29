@@ -91,7 +91,8 @@ public class Puzzle {
      * 
      *     0  1  2  3  4  5  6  7  8
      *     9 10 11 12 13 14 15 16 17
-     *    18 ...
+     *    18 - 26
+     *    27 ... 
      */
     private boolean solveRB(int n) {
         // XXX: replace this return statement with your implementation
@@ -109,6 +110,46 @@ public class Puzzle {
     }
     
     /*
+     * isSafe will take in 3 integers the value to check and the row and col coordinates 
+     * and will return true if it is safe to place the value
+     */
+    private boolean isSafe(int val , int row , int col){
+        if (!checkRow(val,row) && !checkCol(val,col)){
+            return true;
+        }
+        else{
+            return false;
+        }
+        //check if row has val
+        // check if col has val 
+        // return false if either has val
+    }
+    /*
+     * check row  takes a given row and value and checks if there is an instance of val in the row 
+     * and returns true if there is an instance
+     */
+    private boolean checkRow(int val , int row){
+        for(int i = 0; i < DIM; i++){
+            if(this.values[row][i] == val){
+                return true; 
+            }
+        }
+        return false; 
+    }
+    /*
+     * check col takes a given col and value and checks if there is an instance of val in the col 
+     * and returns true if there is an instance
+     */
+    private boolean checkCol(int val, int col){
+        for(int i =0; i < DIM; i++){
+            if(this.values[i][col] == val){
+                return true;
+            }
+        }
+        return false;
+    }
+    /*
+
      * Places the specified value in the cell with the
      * specified coordinates, and update the state of
      * the puzzle accordingly.
