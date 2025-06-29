@@ -45,11 +45,61 @@ public class StringRecursion {
         }
         return -1;
     }
+    /*
+     * indexOF will give the index of the first instance if the given char
+     */
+    public static int indexOf(char ch , String str){
+        if(str == "" || str == null){
+            return -1;
+        }
+        else{
+            if(str.charAt(0) == ch){
+                return 0;
+            }
+            else {
+                int i = indexOf(ch , str.substring(1));
+                if(i == -1){
+                    return i;
+                }
+                else {
+                    return i + 1;
+                }
+                 
+            }
+        }
+    }
+    /*
+     * trim will trim off any leading or trailing space chars from a given string
+     */
+    public static String trim(String str){
+        if (str == ""){
+            return "";
+        }
+        else if (str == null){
+            return null;
+        }
+        else{
+            if (str.charAt(str.length()-1) == ' '){
+                return trim(str.substring(0, str.length()-1));
+            }
+            else{
+                if( str.charAt(1) == ' ' && str.charAt(0) != ' ' && str.charAt(2) != ' ' ){
+                    return str.substring(0, 2) + trim(str.substring(2));
+                }else if (str.charAt(0) == ' '){
+                    return trim (str.substring(1));
+                }else{
+                    return str;
+                }
+            }
+        }
+    }
     public static void main(String[] args){
         String a = "method";
         String b = "abc";
+        System.out.println("tests for reflect:");
         System.out.println(reflect(a));
         System.out.println(reflect(b));
+        System.out.println("tests for numDiff:");
         System.out.println(numDiff("alien", "allen"));
         System.out.println(numDiff("alien", "alone"));
         System.out.println(numDiff("same", "same"));
@@ -57,5 +107,13 @@ public class StringRecursion {
         System.out.println(numDiff("some", "sameness"));
         System.out.println(numDiff("", "abc"));
         System.out.println(numDiff("abc", ""));
+        System.out.println("tests for indexOf:");
+        System.out.println(indexOf('b', "Rabbit"));
+        System.out.println(indexOf('P', "Rabbit"));
+        System.out.println(indexOf('a',"cat"));
+        System.out.println("tests for trim:");
+        // the * are to easily see if trailing spaces are trimmed 
+        System.out.println(trim(" hello world ") + "*");
+        System.out.println(trim("recursion ")+ "*");
     }
 }
