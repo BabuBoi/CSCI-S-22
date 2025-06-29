@@ -43,8 +43,7 @@ public class StringRecursion {
                 return 0;
             }
         }
-        System.out.println("here");
-        return 0;
+        return -1;
     }
     public static void main(String[] args){
         String a = "method";
