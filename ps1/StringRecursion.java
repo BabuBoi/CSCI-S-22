@@ -19,12 +19,12 @@ public class StringRecursion {
     /*
      * returns the number of diffrent charechters between two strings 
      */
-    public static int numDiff(String str1,String str2){
-        if(str1 == "" || str2 == ""){
+    public static int numDiff(String str1, String str2){
+        if(str1 == "" || str2 == "" || str1 == null || str2 == null){
             if(str1.length() > str2.length()){
                 return str1.length() - str2.length();
             }
-            else if (str2.length() > str2.length()){
+            else if (str2.length() > str1.length()){
                 return str2.length() - str1.length();
             }
             else if (str1.length() == str2.length()){
@@ -43,6 +43,8 @@ public class StringRecursion {
                 return 0;
             }
         }
+        System.out.println("here");
+        return 0;
     }
     public static void main(String[] args){
         String a = "method";
