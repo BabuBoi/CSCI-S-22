@@ -76,6 +76,7 @@ public class Puzzle {
         this.subgridHasValue = new boolean[SUBGRID_DIM][SUBGRID_DIM][DIM + 1];        
         
         // XXX: add code to initialize the fields that you add.
+
     }
     
     /*
@@ -88,15 +89,55 @@ public class Puzzle {
      * is responsible for. We recommend that you consider the cells
      * one row at a time, from top to bottom and left to right,
      * which means that they would be numbered as follows:
-     * 
+     *  use row = n/dim and col = n%dim
      *     0  1  2  3  4  5  6  7  8
      *     9 10 11 12 13 14 15 16 17
      *    18 - 26
-     *    27 ... 
+     *    27 -35
+     *    36 -44
+     *    45- 53 
+     *    54- 62
+     *    63- 71
+     *    72 - 80
      */
     private boolean solveRB(int n) {
         // XXX: replace this return statement with your implementation
         // of the method.
+        int row = nRow(n);
+        //int col = nCol(n);
+        for (int val = 1 ; val < 10 ; val++){
+            if (row == DIM){
+                //System.out.println("base case");
+                //this.display();
+                return true;
+            }
+            else{
+                for (int colu = 0; colu < DIM ; colu++){
+                    if(this.isSafe(val, row, colu)){
+                        this.placeVal(val, row, colu);
+                        //System.out.println("pval:" + val);
+                        boolean solv = this.solveRB(n+DIM);
+                        if( solv && val == 9){
+                            //System.out.println("mid case true");
+                            return true;
+                        }
+                        else if(!solv){
+                            this.removeVal(val, row, colu);
+                            //System.out.println("rval:" + val);
+                        }
+                        else if (solv && val < 9){
+                            break;
+                        } 
+                    }  
+                }
+                //return false;
+                if(val == 9){
+                    //System.out.println("val 9 out case");
+                    return false;
+                }
+            }
+        }
+        //System.out.println("out of loop case");
         return false;
     }
     
@@ -110,11 +151,11 @@ public class Puzzle {
     }
     
     /*
-     * isSafe will take in 3 integers the value to check and the row and col coordinates 
+     * isSafe will take in 3 integers the value to check and the row and col coordinates as well as subgrid 
      * and will return true if it is safe to place the value
      */
     private boolean isSafe(int val , int row , int col){
-        if (!checkRow(val,row) && !checkCol(val,col)){
+        if (!checkRow(val,row) && !checkCol(val,col) && !checkSub(val, row, col) && !this.valIsFixed[row][col]){
             return true;
         }
         else{
@@ -147,6 +188,26 @@ public class Puzzle {
             }
         }
         return false;
+    }
+    /*
+     * converts n to row number
+     */
+    private int nRow(int n){
+        return n/DIM;
+    }
+    /*
+     * converts n to col number
+     */
+    private int nCol(int n){
+        return n%DIM;
+    }
+
+    /*
+     * checkSub will check a specific subgrid of given row and col 
+     * and return true if there is already an instance of val in the subgrid
+     */
+    private boolean checkSub(int val , int row , int col){
+        return this.subgridHasValue[row/SUBGRID_DIM][col/SUBGRID_DIM][val];
     }
     /*
 
