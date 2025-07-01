@@ -104,40 +104,32 @@ public class Puzzle {
         // XXX: replace this return statement with your implementation
         // of the method.
         int row = nRow(n);
-        //int col = nCol(n);
-        for (int val = 1 ; val < 10 ; val++){
-            if (row == DIM){
-                //System.out.println("base case");
-                //this.display();
-                return true;
-            }
-            else{
-                for (int colu = 0; colu < DIM ; colu++){
-                    if(this.isSafe(val, row, colu)){
-                        this.placeVal(val, row, colu);
-                        //System.out.println("pval:" + val);
-                        boolean solv = this.solveRB(n+DIM);
-                        if( solv && val == 9){
-                            //System.out.println("mid case true");
-                            return true;
-                        }
-                        else if(!solv){
-                            this.removeVal(val, row, colu);
-                            //System.out.println("rval:" + val);
-                        }
-                        else if (solv && val < 9){
-                            break;
-                        } 
-                    }  
-                }
-                //return false;
-                if(val == 9){
-                    //System.out.println("val 9 out case");
-                    return false;
-                }
-            }
+        int col = nCol(n);
+    
+        if (n == (DIM*DIM)){
+            //System.out.println("base case");
+            this.display();
+            return true;
         }
-        //System.out.println("out of loop case");
+        if(!this.valIsFixed[row][col]){
+        for (int val = 1 ; val < 10 ; val++){
+            if(this.isSafe(val, row, col)){
+                this.placeVal(val, row, col);
+                System.out.println("pval:"+ val + " @row " + row + " @col " + col + " @n " + n);
+                boolean solv = this.solveRB(n+1);
+                if(solv){
+                    //System.out.println("mid case true");
+                    return true;
+                }
+                this.removeVal(val, row, col);
+                System.out.println("rval:" + val + " @row " + row + " @col " + col + " @n " + n);
+            } 
+        }
+        }
+        else if(this.valIsFixed[row][col]){
+                return this.solveRB(n+1);
+            }
+    //System.out.println("out of loop case");
         return false;
     }
     
@@ -155,7 +147,7 @@ public class Puzzle {
      * and will return true if it is safe to place the value
      */
     private boolean isSafe(int val , int row , int col){
-        if (!checkRow(val,row) && !checkCol(val,col) && !checkSub(val, row, col) && !this.valIsFixed[row][col]){
+        if (!checkRow(val,row) && !checkCol(val,col) && !checkSub(val, row, col)){
             return true;
         }
         else{
