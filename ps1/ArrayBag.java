@@ -335,7 +335,6 @@ public class ArrayBag {
         System.out.println("c is :" + c.toString());
         System.out.println("b is :" + b.toString());
         System.out.println("b intersectionWith c is :" + b.intersectionWith(c).toString());
-
         // Create a Scanner object for user input.
         Scanner scan = new Scanner(System.in);
         
