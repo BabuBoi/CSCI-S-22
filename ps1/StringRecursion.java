@@ -14,7 +14,7 @@ public class StringRecursion {
             else {
                 return str.charAt(0) + s + str.charAt(0);
             }
-}
+        }
     }
     /*
      * returns the number of diffrent charechters between two strings 
@@ -98,6 +98,7 @@ public class StringRecursion {
         String b = "abc";
         System.out.println("tests for reflect:");
         System.out.println(reflect(a));
+        System.out.println(reflect("method"));
         System.out.println(reflect(b));
         System.out.println("tests for numDiff:");
         System.out.println(numDiff("alien", "allen"));
