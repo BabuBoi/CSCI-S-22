@@ -7,11 +7,12 @@ public class StringRecursion {
             return "";
         }
         else{
-            String s = reflect(str.substring(1));
+            
             if (str.length() == 1){
                 return str + str ;
             }
             else {
+                String s = reflect(str.substring(1));
                 return str.charAt(0) + s + str.charAt(0);
             }
         }
@@ -32,15 +33,41 @@ public class StringRecursion {
             }
         }
         else{
-            int r = numDiff(str1.substring(1), str2.substring(1));
-            if(str1.charAt(0) == str2.charAt(0)){
-                return r;
+            if (str1.length() == 1 && str2.length() > 1){
+                if(str1.charAt(0) == str2.charAt(0)){
+                    return numDiff("", str2.substring(1));
+                }
+                else if (str1.charAt(0) != str2.charAt(0)){
+                    return 1 + numDiff("",str2.substring(1));
+                }
             }
-            else if (str1.charAt(0) != str2.charAt(0)){
-                return r + 1;
+            else if (str2.length() == 1 && str1.length() > 1){
+                if(str1.charAt(0) == str2.charAt(0)){
+                    return numDiff(str1.substring(1), "");
+                }
+                else if (str1.charAt(0) != str2.charAt(0)){
+                    return 1 + numDiff(str1.substring(1),"");
+                }
+            }
+            else if (str1.length()== 1 && str2.length() == 1){
+                if (str1.charAt(0) == str2.charAt(0)){
+                    return 0;
+                }
+                else if (str1.charAt(0) != str2.charAt(0)){
+                    return 1;
+                }
             }
             else{
-                return 0;
+                int r = numDiff(str1.substring(1), str2.substring(1));
+                if(str1.charAt(0) == str2.charAt(0)){
+                    return r;
+                }
+                else if (str1.charAt(0) != str2.charAt(0)){
+                    return r + 1;
+                }
+                else{
+                    return 0;
+                }
             }
         }
         return -1;
