@@ -107,29 +107,23 @@ public class Puzzle {
         int col = nCol(n);
     
         if (n == (DIM*DIM)){
-            //System.out.println("base case");
-            this.display();
             return true;
         }
         if(!this.valIsFixed[row][col]){
         for (int val = 1 ; val < 10 ; val++){
             if(this.isSafe(val, row, col)){
                 this.placeVal(val, row, col);
-                System.out.println("pval:"+ val + " @row " + row + " @col " + col + " @n " + n);
                 boolean solv = this.solveRB(n+1);
                 if(solv){
-                    //System.out.println("mid case true");
                     return true;
                 }
                 this.removeVal(val, row, col);
-                System.out.println("rval:" + val + " @row " + row + " @col " + col + " @n " + n);
             } 
         }
         }
         else if(this.valIsFixed[row][col]){
                 return this.solveRB(n+1);
             }
-    //System.out.println("out of loop case");
         return false;
     }
     
