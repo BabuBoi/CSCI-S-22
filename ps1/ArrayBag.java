@@ -160,7 +160,7 @@ public class ArrayBag {
     /*
      * increasecapacity will increase the maximum capacity of the bag by the given amount
      */
-    public void increasecapacity(int amount){
+    public void increaseCapacity(int amount){
         if(amount > 0){
         Object[] nbag = new Object[this.items.length + amount];
         for(int i=0; i < this.items.length ; i++){
@@ -267,74 +267,74 @@ public class ArrayBag {
         System.out.println("_________________________________");
         System.out.println("tests for roomleft()");
         System.out.println("---------------------------------");
-        ArrayBag a = new ArrayBag(5);
-        a.add("map");
-        System.out.println("room left in a: " + a.roomLeft());
-        a.add("bottle");
-        System.out.println("room left in a: " + a.roomLeft());
-        a.add("pen");
-        System.out.println("room left in a: " + a.roomLeft());
+        ArrayBag aTest = new ArrayBag(5);
+        aTest.add("map");
+        System.out.println("room left in a: " + aTest.roomLeft());
+        aTest.add("bottle");
+        System.out.println("room left in a: " + aTest.roomLeft());
+        aTest.add("pen");
+        System.out.println("room left in a: " + aTest.roomLeft());
         //test for isempty()
         System.out.println("_________________________________");
         System.out.println("tests for isempty()");
         System.out.println("---------------------------------");
-        ArrayBag b = new ArrayBag(2);
-        System.out.println("is b empty = "+b.isEmpty());
-        System.out.println("is a empty = " + a.isEmpty());
+        ArrayBag bTest = new ArrayBag(2);
+        System.out.println("is b empty = "+bTest.isEmpty());
+        System.out.println("is a empty = " + aTest.isEmpty());
         //test for increasecapacity
         System.out.println("_________________________________");
         System.out.println("tests for increase capacity");
         System.out.println("---------------------------------");
-        ArrayBag c = new ArrayBag(10);
-        System.out.println("capacity of c :" + c.items().length);
-        System.out.println("capacity of a :" + a.items().length);
-        System.out.println("capacity of b :" + b.items().length);
-        c.increasecapacity(0);
+        ArrayBag ctest = new ArrayBag(10);
+        System.out.println("capacity of c :" + ctest.items().length);
+        System.out.println("capacity of a :" + aTest.items().length);
+        System.out.println("capacity of b :" + bTest.items().length);
+        ctest.increaseCapacity(0);
         //c.increasecapacity(-1);
-        a.increasecapacity(1);
-        b.increasecapacity(2);
+        aTest.increaseCapacity(1);
+        bTest.increaseCapacity(2);
         System.out.println("---Size after increase---");
-        System.out.println("capacity of c :" + c.items().length);
-        System.out.println("capacity of a :" + a.items().length);
-        System.out.println("capacity of b :" + b.items().length);
+        System.out.println("capacity of c :" + ctest.items().length);
+        System.out.println("capacity of a :" + aTest.items().length);
+        System.out.println("capacity of b :" + bTest.items().length);
         //testing for additems
         System.out.println("_________________________________");
         System.out.println("tests for additems");
         System.out.println("---------------------------------");
-        ArrayBag d = new ArrayBag(2);
-        d.add("pen");
-        d.add("paper");
-        System.out.println("a :" + a.toString());
-        System.out.println("d :" + d.toString());
-        a.addItems(d);
-        System.out.println("contents of d added to a =" + a.toString());
-        System.out.println("adding itms from empty bag b to a :" + a.addItems(b));
+        ArrayBag dTest = new ArrayBag(2);
+        dTest.add("pen");
+        dTest.add("paper");
+        System.out.println("a :" + aTest.toString());
+        System.out.println("d :" + dTest.toString());
+        aTest.addItems(dTest);
+        System.out.println("contents of d added to a =" + aTest.toString());
+        System.out.println("adding itms from empty bag b to a :" + aTest.addItems(bTest));
         System.out.println("_________________________________");
         System.out.println("tests for intersectionWith");
         System.out.println("---------------------------------");
-        ArrayBag x = new ArrayBag();
-        x.add(2);
-        x.add(2);
-        x.add(3);
-        x.add(5);
-        x.add(7);
-        x.add(7);
-        x.add(7);
-        x.add(8);
-        ArrayBag y = new ArrayBag();
-        y.add(2);
-        y.add(3);
-        y.add(4);
-        y.add(5);
-        y.add(5);
-        y.add(6);
-        y.add(7);
-        System.out.println("x is :" + x.toString());
-        System.out.println("y is :" + y.toString());
-        System.out.println("x intersection with y is :" + x.intersectionWith(y).toString());
-        System.out.println("c is :" + c.toString());
-        System.out.println("b is :" + b.toString());
-        System.out.println("b intersectionWith c is :" + b.intersectionWith(c).toString());
+        ArrayBag xTest = new ArrayBag();
+        xTest.add(2);
+        xTest.add(2);
+        xTest.add(3);
+        xTest.add(5);
+        xTest.add(7);
+        xTest.add(7);
+        xTest.add(7);
+        xTest.add(8);
+        ArrayBag yTest = new ArrayBag();
+        yTest.add(2);
+        yTest.add(3);
+        yTest.add(4);
+        yTest.add(5);
+        yTest.add(5);
+        yTest.add(6);
+        yTest.add(7);
+        System.out.println("x is :" + xTest.toString());
+        System.out.println("y is :" + yTest.toString());
+        System.out.println("x intersection with y is :" + xTest.intersectionWith(yTest).toString());
+        System.out.println("c is :" + ctest.toString());
+        System.out.println("b is :" + bTest.toString());
+        System.out.println("b intersectionWith c is :" + bTest.intersectionWith(ctest).toString());
         // Create a Scanner object for user input.
         Scanner scan = new Scanner(System.in);
         
