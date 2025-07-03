@@ -60,8 +60,8 @@ public class Mode {
     public static void main(String[] args){
         int[] a1 = {10, 8, 12, 8, 10, 5, 8};
         int[] a2 = {7, 5, 3, 5, 7, 11, 11};
-        Sort.shellSort(a1);
-        Sort.shellSort(a2);
+        Sort.quickSort(a1);
+        Sort.quickSort(a2);
         System.out.println(findMode(a1));
         System.out.println(findMode(a2));
     }
