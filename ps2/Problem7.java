@@ -45,7 +45,6 @@ public class Problem7 {
                         lnu = arr[i];
                         if(start != -1 || end != -1){
                             if((0 < (end-start+1)) && (start >= 0)){
-                                System.out.println("here");
                                 arr[start] = arr[i];
                                 arr[i] = 0;
                                 end +=1;
