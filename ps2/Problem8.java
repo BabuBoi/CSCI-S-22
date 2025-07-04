@@ -15,55 +15,69 @@ public class Problem8 {
         else if (a1.length > a2.length){
             return intersect(a2,a1);
         }
-        else if (a2.length > a1.length){
+        else if (a2.length >= a1.length){
             int[] out = new int[a1.length];
             Sort.quickSort(a1);
             Sort.quickSort(a2);
+            //System.out.println(Arrays.toString(a1));
+            //System.out.println(Arrays.toString(a2));
             int i = 0;
             int j = 0;
             int k = 0;
             int lin = Integer.MIN_VALUE;
             do {
-                if (a1[i] != a2[j]){
-                    if(a2[j] > a1[i]){
+                //System.out.println("a1[i]:" + a1[i]);
+                //System.out.println("a2[j]:" + a2[j]);
+                //System.out.println("linb" + lin);
+                if(a1[i] != a2[j]){
+                    //System.out.println("!=");
+                    if(a1[i] < a2[j]){
                         if (i < a1.length -1){
-                            i++;
+                            i+=1;
                         }
+                        else{
+                            break;
+                        }
+                    }
+                    else{
+                        j+=1;
                     }
                 }
                 else if(a1[i] == a2[j] && a1[i] != lin){
+                    //System.out.println("==");
                     out[k] = a1[i];
+                    lin = a1[i];
                     if (k < out.length -1){
-                        k++;
+                        k+=1;
                     }
                     if (i < a1.length -1){
-                        i++;
+                        i+=1;
                     }
-                    lin = a1[i];
-                    j++;
+                    else{
+                        break;
+                    }
+                    j+=1;
+                    
+                    
                 }
-                
+                else if (a1[i] == a2[j] && a1[i] == lin){
+                    //System.out.println("==skip");
+                    if (i < a1.length -1){
+                        i+=1;
+                    }
+                    else{
+                        break;
+                    }
+                    j+=1;
+                }
+                //System.out.println("lina" + lin);
             }while(j < a2.length);
-            return out; 
-        }
-        else if (a1.length == a2.length){
-            int[] out = new int[a1.length];
-            Sort.quickSort(a1);
-            Sort.quickSort(a2);
-            int i = 0;
-            int j = 0; 
-            int k = 0;
-            int lin = Integer.MIN_VALUE;
-            do {
-                if(a1[i] == a2[j] && a1[i] != lin){
-                    out[k] = a1[i];
-                    k++;
-                    lin = a1[i];
-                }
-                i++;
-                j++;
-            }while(i < a1.length);
-            return out;
+            if(lin == Integer.MIN_VALUE){
+                int[] o = new int[0];
+                return o;
+            }else{
+                return out;
+            } 
         }
         int[] out = new int[0];
         return out;
@@ -78,5 +92,16 @@ public class Problem8 {
         int[] a4 = {12, 0, -4, 8};
         int[] result2 = intersect(a3, a4);
         System.out.println(Arrays.toString(result2));
+
+        int[] a5 = {0, 0, -4, 6, 10, 8};
+        int[] a6 = {12, 0, -4, 8, 10, 8};
+        int[] result3 = intersect(a5, a6);
+        System.out.println(Arrays.toString(result3));
+
+        int[] a7 = {0,0,0,0,0,0,0,0,0,0};
+        int[] a8 = {7, 11, -40, 8, 10, 8};
+        int[] result4 = intersect(a7, a8);
+        System.out.println(Arrays.toString(result4));
+
     }
 }
