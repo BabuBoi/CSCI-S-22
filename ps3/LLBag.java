@@ -22,7 +22,7 @@ public class LLBag {
     /*
      * length returns length of the LLlist not including the dummy head node
      */
-    public int length(){
+    public int numItems(){
         return this.length;
     }
 
@@ -77,7 +77,7 @@ public class LLBag {
       * bag is null or empty (could be optimized with hash table)
       */
       public boolean containsAll(LLBag otherBag){
-        if(otherBag == null || otherBag.length() == 0){
+        if(otherBag == null || otherBag.numItems() == 0){
             return false;
         }
         Node trav = otherBag.head.next;
@@ -155,7 +155,7 @@ public class LLBag {
         }
         else if (this.isEmpty() || other.isEmpty()){return new LLBag();}
         else{
-            boolean leftS = this.length() <= other.length();
+            boolean leftS = this.numItems() <= other.numItems();
             if(leftS){
                 LLBag nBag = new LLBag();
                 Node trav = this.head.next;
@@ -214,28 +214,28 @@ public class LLBag {
     public static void main(String[] args){
         //test add
         LLBag bag = new LLBag();
-        System.out.println("initial bag with "+bag.length()+" items:" + bag.toString());
+        System.out.println("initial bag with "+bag.numItems()+" items:" + bag.toString());
         bag.add("hat");
-        System.out.println("bag with "+ bag.length() +" item:" + bag.toString());
+        System.out.println("bag with "+ bag.numItems() +" item:" + bag.toString());
         bag.add("cookie");
-        System.out.println("bag with "+bag.length()+" items:" + bag.toString());
+        System.out.println("bag with "+bag.numItems()+" items:" + bag.toString());
         bag.add("bottle");
-        System.out.println("bag with "+bag.length()+" items:" + bag.toString());
+        System.out.println("bag with "+bag.numItems()+" items:" + bag.toString());
         bag.add("compass");
-        System.out.println("bag with "+bag.length()+" items:" + bag.toString());
+        System.out.println("bag with "+bag.numItems()+" items:" + bag.toString());
         bag.add("jam");
-        System.out.println("bag with "+bag.length()+" items:" + bag.toString());
+        System.out.println("bag with "+bag.numItems()+" items:" + bag.toString());
         
         //test remove
         bag.remove("jam");
         System.out.println("bag with jam removed:"+bag.toString());
-        System.out.println("bag now has "+bag.length()+" items");
+        System.out.println("bag now has "+bag.numItems()+" items");
         bag.remove("hat");
         System.out.println("bag with hat removed:"+bag.toString());
-        System.out.println("bag now has "+bag.length()+" items");
+        System.out.println("bag now has "+bag.numItems()+" items");
         bag.remove("bottle");
         System.out.println("bag with bottle removed:"+bag.toString());
-        System.out.println("bag now has "+bag.length()+" items");
+        System.out.println("bag now has "+bag.numItems()+" items");
 
         //test contains
         System.out.println("does bag contain cookie:" +bag.contains("cookie"));
